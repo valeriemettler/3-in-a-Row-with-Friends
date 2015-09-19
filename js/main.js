@@ -2,6 +2,9 @@ var counter = 0;
 
 $('div').on('click', function(e) {
     var that = this;
+    if ($(that).html() !== "") {
+        return;
+    }
     var x;
 
     var isOdd = function(counter) {
