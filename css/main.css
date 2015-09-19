@@ -1,0 +1,10 @@
+body {
+    background: #ccc;
+}
+.field {
+    background: #FFFFFF;
+    width: 100px;
+    height: 100px;
+    font-size: 90px;
+    text-align: center;
+}
