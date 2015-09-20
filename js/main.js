@@ -21,27 +21,14 @@ fb.on('child_added', function(item) {
     var token = item.val();
     addToken(token.boxIndex, token.letter);
     var r = item.val();
-    //console.log(r); // prints the dictionary objects of boxIndex:letter from firebase
     var boxIndex = item.val()['boxIndex'];
-    //console.log("boxIndex", boxIndex);
     var letter = item.val()['letter'];
-    //console.log("letter", letter);
-    //$(boxIndex).html(letter);
-    //$("#q01").html(letter);
     counter = counter + 1;
     console.log(counter);
-    //var c = item.val()['counter'];
-
-    //console.log(c);
-
 });
 
 var addToken = function(boxIndex, letter) {
     $("#" + boxIndex).html(letter);
-
-    //console.log("#" + boxIndex);
-    //console.log('#q01');
-   // $(boxIndex).html(letter);
 };
 
 var onComplete = function(error) {
@@ -62,8 +49,6 @@ var deleteData = function() {
 $(document).ready(function() {
     displayBoard();
     deleteData();
-    //var k = addToken();
-    //console.log(k);
 
     $('div').on('click', function(e) {
         var that = this;
@@ -86,9 +71,8 @@ $(document).ready(function() {
         }
 
         var boxIndex = $(that).attr('id');
-        //console.log($(that).attr('id'));
-        var letter = $(that).html();
 
+        var letter = $(that).html();
 
         fb.push({
             boxIndex: boxIndex,
