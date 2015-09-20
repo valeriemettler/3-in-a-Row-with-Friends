@@ -1,3 +1,7 @@
+var fb = new Firebase('https://valtictactoegame.firebaseio.com/');
+var d = {};
+var item;
+
 var counter = 0;
 
 var displayBoard = function() {
@@ -7,7 +11,7 @@ var displayBoard = function() {
     for (var i = 0; i <= n; i++) {
         x = x + ('<tr>');
         for (var j = 0; j <= n; j++) {
-            x = x + '<td><div class="field"></div></td>';
+            x = x + '<td><div class="field" box-id="q' + i + '' + j + '"></div></td>';
         }
     }
     x = x + '</tr></table>';
@@ -24,19 +28,29 @@ $(document).ready(function() {
         if ($(that).html() !== "") {
             return;
         }
-        var x;
 
         var isOdd = function(counter) {
-            x = (counter % 2);
-            return x;
+            return (counter % 2);
         };
-        isOdd(counter);
+        var x = isOdd(counter);
+
+        var y = "X";
+        var z = "O";
 
         if (x === 1) {
-            $(that).html("X");
+            var a = $(that).html(y);
         } else {
-            $(that).html("0");
+            var a = $(that).html(z);
         }
         counter = counter + 1;
+
+        var boxIndex = $(that).attr('box-id');
+        console.log($(that).attr('box-id'));
+        var letter = $(that).html();
+
+        fb.push({
+            boxIndex: boxIndex,
+            letter: letter
+        });
     })
 });
