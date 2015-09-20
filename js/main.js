@@ -13,6 +13,10 @@ var displayBoard = function () {
     x = x + '</tr></table>';
     $('#x').html(x);
 }
+
+
+
+$(document).ready(function() {
 displayBoard();
 
 $('div').on('click', function(e) {
@@ -35,3 +39,4 @@ $('div').on('click', function(e) {
     }
     counter = counter + 1;
 })
+});
