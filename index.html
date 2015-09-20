@@ -4,15 +4,23 @@
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible"content="IE=edge">
+        <meta name="viewport"content="width=device-width, initial-scale=1">
         <title>TicTacToe | Built with JavaScript and jQuery</title>
-        <!--  <link rel="stylesheet" href="css/bootstrap.css"> -->
-        <link rel="stylesheet" href="css/main.css">
+        <!--  <link rel="stylesheet"href="css/bootstrap.css"> -->
+        <link rel="stylesheet"href="css/main.css">
     </head>
     <body>
+        <div>
+            <button id="buttonNew"type="button">New Game</button>
+            <div id='boardNum'>Board Number:</div>
+        </div>
+        <div>
+            <input type='text'id='boardInput'placeholder='Board Number'value="">
+            <button id="buttonSet"type="button">Set Game Board</button>
+        </div>
         <div id="x"></div>
-        <button type="button">New Game</button>
+        <button id="deleteData" type="button">Delete Game</button>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>

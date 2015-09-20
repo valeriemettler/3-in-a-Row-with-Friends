@@ -1,7 +1,29 @@
-var fb = new Firebase('https://valtictactoegame.firebaseio.com/');
+var fb;
 var item;
-
 var counter = 0;
+
+var makeBoard = function() {
+    $('#buttonNew').on('click', function() {
+        //var fb = new Firebase('http://test2player.firebaseio.com/');
+        var boardNum = parseInt(Math.random() * (1000 - 1) + 1);
+        //console.log(boardNum);
+        // $('#boardNum').html(boardNum);
+        $('#boardInput').val(boardNum);
+        fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardNum);
+        //console.log('http://test2player.firebaseio.com/' + boardNum);
+        startGame();
+    });
+}
+makeBoard();
+
+$('#buttonSet').on('click', function() {
+    // $('#boardInput').keypress(function (e) {
+    //   console.log("I'm here!!!");
+    //   if (e.keyCode == 13) {
+    var boardInput = $('#boardInput').val();
+    fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
+    startGame();
+});
 
 var displayBoard = function() {
     var x = "";
@@ -17,15 +39,17 @@ var displayBoard = function() {
     $('#x').html(x);
 }
 
-fb.on('child_added', function(item) {
-    var token = item.val();
-    addToken(token.boxIndex, token.letter);
-    var r = item.val();
-    var boxIndex = item.val()['boxIndex'];
-    var letter = item.val()['letter'];
-    counter = counter + 1;
-    console.log(counter);
-});
+var startGame = function() {
+    fb.on('child_added', function(item) {
+        var token = item.val();
+        addToken(token.boxIndex, token.letter);
+        var r = item.val();
+        var boxIndex = item.val()['boxIndex'];
+        var letter = item.val()['letter'];
+        counter = counter + 1;
+        console.log(counter);
+    });
+};
 
 var addToken = function(boxIndex, letter) {
     $("#" + boxIndex).html(letter);
@@ -40,7 +64,7 @@ var onComplete = function(error) {
 };
 
 var deleteData = function() {
-    $('button').on('click', function() {
+    $('#deleteData').on('click', function() {
         fb.remove(onComplete);
         location.reload();
     })
