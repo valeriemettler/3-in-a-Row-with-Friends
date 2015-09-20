@@ -2,28 +2,20 @@ var fb;
 var item;
 var counter = 0;
 
-var makeBoard = function() {
-    $('#buttonNew').on('click', function() {
-        //var fb = new Firebase('http://test2player.firebaseio.com/');
-        var boardNum = parseInt(Math.random() * (1000 - 1) + 1);
-        //console.log(boardNum);
-        // $('#boardNum').html(boardNum);
-        $('#boardInput').val(boardNum);
-        fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardNum);
-        //console.log('http://test2player.firebaseio.com/' + boardNum);
-        startGame();
-    });
-}
-makeBoard();
+
 
 $('#buttonSet').on('click', function() {
+    // clearBoard();
     // $('#boardInput').keypress(function (e) {
     //   console.log("I'm here!!!");
     //   if (e.keyCode == 13) {
     var boardInput = $('#boardInput').val();
     fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
+    displayBoard();
     startGame();
+    reset();
 });
+
 
 var displayBoard = function() {
     var x = "";
@@ -32,7 +24,7 @@ var displayBoard = function() {
     for (var i = 0; i <= n; i++) {
         x = x + ('<tr>');
         for (var j = 0; j <= n; j++) {
-            x = x + '<td><div class="field" id="q' + i + '' + j + '"></div></td>';
+            x = x + '<td class="submit"><div class="field" id="q' + i + '' + j + '"></div></td>';
         }
     }
     x = x + '</tr></table>';
@@ -70,16 +62,14 @@ var deleteData = function() {
     })
 };
 
-$(document).ready(function() {
-    displayBoard();
-    deleteData();
-
-    $('div').on('click', function(e) {
+var reset = function(){
+    $('.submit').on('click', '.field', function(e) {
+        e.stopPropagation();
         var that = this;
         if ($(that).html() !== "") {
             return;
         }
-
+        console.log(counter);
         var isOdd = function(counter) {
             return (counter % 2);
         };
@@ -101,6 +91,29 @@ $(document).ready(function() {
         fb.push({
             boxIndex: boxIndex,
             letter: letter
-        });
+        })
     })
+};
+
+$(document).ready(function() {
+    displayBoard();
+    deleteData();
+
+    var makeBoard = function() {
+    // $('#buttonNew').on('click', function() {
+        //var fb = new Firebase('http://test2player.firebaseio.com/');
+        var boardNum = parseInt(Math.random() * (1000 - 1) + 1);
+        //console.log(boardNum);
+        // $('#boardNum').html(boardNum);
+        $('#boardInput').val(boardNum);
+        fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardNum);
+        //console.log('http://test2player.firebaseio.com/' + boardNum);
+        displayBoard();
+        startGame();
+        reset();
+
+    // });
+}
+makeBoard();
+
 });
