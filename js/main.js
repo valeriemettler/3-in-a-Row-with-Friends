@@ -9,7 +9,7 @@ $('#buttonSet').on('click', function() {
     // $('#boardInput').keypress(function (e) {
     //   console.log("I'm here!!!");
     //   if (e.keyCode == 13) {
-    var boardInput = $('#boardInput').val();
+    var boardInput = $('#joinInput').val();
     fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
     displayBoard();
     startGame();
