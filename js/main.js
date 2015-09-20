@@ -1,5 +1,4 @@
 var fb = new Firebase('https://valtictactoegame.firebaseio.com/');
-var d = {};
 var item;
 
 var counter = 0;
@@ -29,13 +28,19 @@ fb.on('child_added', function(item) {
     //console.log("letter", letter);
     //$(boxIndex).html(letter);
     //$("#q01").html(letter);
+    counter = counter + 1;
+    console.log(counter);
+    //var c = item.val()['counter'];
+
+    //console.log(c);
 
 });
 
 var addToken = function(boxIndex, letter) {
     $("#" + boxIndex).html(letter);
-    console.log("#" + boxIndex);
-    console.log('#q01');
+
+    //console.log("#" + boxIndex);
+    //console.log('#q01');
    // $(boxIndex).html(letter);
 };
 
@@ -79,11 +84,11 @@ $(document).ready(function() {
         } else {
             var a = $(that).html(z);
         }
-        counter = counter + 1;
 
         var boxIndex = $(that).attr('id');
         //console.log($(that).attr('id'));
         var letter = $(that).html();
+
 
         fb.push({
             boxIndex: boxIndex,
