@@ -1,21 +1,23 @@
 var fb;
 var item;
 var counter = 0;
+var childAdded;
 
 
-
-$('#buttonSet').on('click', function() {
-    // clearBoard();
-    // $('#boardInput').keypress(function (e) {
-    //   console.log("I'm here!!!");
-    //   if (e.keyCode == 13) {
-    var boardInput = $('#joinInput').val();
-    fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
-    displayBoard();
-    startGame();
-    reset();
-});
-
+var join = function() {
+    $('#buttonSet').on('click', function() { //gets called once at the beginning to join game
+        // clearBoard();
+        // $('#boardInput').keypress(function (e) {
+        //   console.log("I'm here!!!");
+        //   if (e.keyCode == 13) {
+        var boardInput = $('#joinInput').val();
+        fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
+        displayBoard();
+        startGame();
+        reset();
+        //console.log("join game");
+    })
+};
 
 var displayBoard = function() {
     var x = "";
@@ -31,19 +33,21 @@ var displayBoard = function() {
     $('#x').html(x);
 }
 
-var startGame = function() {
+var startGame = function() { //gets called on load and with each child added
+    fb.off('child_added');
     fb.on('child_added', function(item) {
         var token = item.val();
-        addToken(token.boxIndex, token.letter);
-        var r = item.val();
+        console.log(token);
+        addToken(token.boxIndex, token.letter); //called twice???
         var boxIndex = item.val()['boxIndex'];
         var letter = item.val()['letter'];
-        counter = counter + 1;
-        console.log(counter);
+        counter = counter + 1; //called twice???
+        console.log("start", counter);
     });
 };
 
-var addToken = function(boxIndex, letter) {
+var addToken = function(boxIndex, letter) { //called twice???
+    console.log("addtoken");
     $("#" + boxIndex).html(letter);
 };
 
@@ -62,14 +66,14 @@ var deleteData = function() {
     })
 };
 
-var reset = function(){
+var reset = function() {
     $('.submit').on('click', '.field', function(e) {
         e.stopPropagation();
         var that = this;
         if ($(that).html() !== "") {
             return;
         }
-        console.log(counter);
+        console.log("reset", counter);
         var isOdd = function(counter) {
             return (counter % 2);
         };
@@ -98,9 +102,10 @@ var reset = function(){
 $(document).ready(function() {
     displayBoard();
     deleteData();
+    join();
 
-    var makeBoard = function() {
-    // $('#buttonNew').on('click', function() {
+    var makeBoard = function() { //this gets run on loading the page
+        // $('#buttonNew').on('click', function() {
         //var fb = new Firebase('http://test2player.firebaseio.com/');
         var boardNum = parseInt(Math.random() * (1000 - 1) + 1);
         //console.log(boardNum);
@@ -111,9 +116,10 @@ $(document).ready(function() {
         displayBoard();
         startGame();
         reset();
+        //console.log("makeboard");
 
-    // });
-}
-makeBoard();
+        // });
+    }
+    makeBoard();
 
 });
