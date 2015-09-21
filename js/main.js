@@ -3,22 +3,19 @@ var item;
 var counter = 0;
 var boardInput;
 var boardNum;
-var cc = 1;
+var clickCounter = 1;
 var turn = true;
 
 // var makePlayer = function (){
-    //can only play on every other child added... or even/odd counter
-    // $('#usernameSet').on('click', function() {
-
-        // var nameInput = $('#nameInput').val();
-        // console.log(nameInput);
-        // fbplayers = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput + '/' + nameInput);
-        // fbplayers.child('turn').set('null');
-
-        //fbplayers.update({ turn: 'null'});
-        //fbplayers.update({ turn: 'true'});
-        //fbplayers.update({ turn: 'false'});
-    // })
+// $('#usernameSet').on('click', function() {
+// var nameInput = $('#nameInput').val();
+// console.log(nameInput);
+// fbplayers = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput + '/' + nameInput);
+// fbplayers.child('turn').set('null');
+//fbplayers.update({ turn: 'null'});
+//fbplayers.update({ turn: 'true'});
+//fbplayers.update({ turn: 'false'});
+// })
 
 // };
 
@@ -63,19 +60,16 @@ var startGame = function() {
         addToken(token.boxIndex, token.letter);
         var boxIndex = item.val()['boxIndex'];
         var letter = item.val()['letter'];
-        counter = counter + 1;
-        cc += 1;
-        if (cc >= 2) {
-            // cc being >=2 means child_added was triggered at least twice.
-            // since we stop the user from sending data to the server more than once at a time, this implies the other player sent the other piece of data and triggered child_added for the second time
-
+        counter += 1;   //increment counter
+        clickCounter += 1;       //increment clickCounter
+        if (clickCounter >= 2) {  //check if clickCounter is less or equal to 2
+            // clickCounter being >=2 means child_added was triggered at least twice.
+            // since we stop the user from sending data to the server more than once at a time,
+            //this implies the other player sent the other piece of data and triggered child_added for the second time.
             turn = true;
         } else {
             turn = false;
         }
-        console.log("cc",cc);
-        console.log("counter",counter);
-        //console.log(turn);
     });
 };
 
@@ -83,30 +77,24 @@ var addToken = function(boxIndex, letter) {
     $("#" + boxIndex).html(letter);
 };
 
-
-
 var reset = function() {
     $('.submit').on('click', '.field', function(e) {
         e.stopPropagation();
-        if (turn == false) {return;}
-        cc = 0;
+
+        if (turn == false) {
+            return;
+        }
+        clickCounter = 0;  //reset clickCounter to 0
+
         var that = this;
         if ($(that).html() !== "") {
             return;
         }
 
-        var isOdd = function(counter) {
-            return (counter % 2);
-        };
-        var x = isOdd(counter);
-
-        var y = "X";
-        var z = "O";
-
-        if (x === 1) {
-            var a = $(that).html(y);
+        if (counter % 2) {  //check if counter is even or odd
+            $(that).html("X");
         } else {
-            var a = $(that).html(z);
+            $(that).html("O");
 
         }
 
