@@ -1,10 +1,29 @@
 var fb;
 var item;
 var counter = 0;
-var childAdded;
+var boardInput;
+var boardNum;
+var cc = 1;
+var turn = true;
+
+// var makePlayer = function (){
+    //can only play on every other child added... or even/odd counter
+    // $('#usernameSet').on('click', function() {
+
+        // var nameInput = $('#nameInput').val();
+        // console.log(nameInput);
+        // fbplayers = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput + '/' + nameInput);
+        // fbplayers.child('turn').set('null');
+
+        //fbplayers.update({ turn: 'null'});
+        //fbplayers.update({ turn: 'true'});
+        //fbplayers.update({ turn: 'false'});
+    // })
+
+// };
 
 var makeBoard = function() {
-    var boardNum = parseInt(Math.random() * (1000 - 1) + 1);
+    boardNum = parseInt(Math.random() * (1000 - 1) + 1);
     $('#boardInput').val(boardNum);
     fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardNum);
     displayBoard();
@@ -14,8 +33,9 @@ var makeBoard = function() {
 
 var join = function() {
     $('#buttonSet').on('click', function() {
-        var boardInput = $('#joinInput').val();
+        boardInput = $('#joinInput').val();
         fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
+        // makePlayer();
         displayBoard();
         startGame();
         reset();
@@ -40,11 +60,22 @@ var startGame = function() {
     fb.off('child_added');
     fb.on('child_added', function(item) {
         var token = item.val();
-        console.log(token);
         addToken(token.boxIndex, token.letter);
         var boxIndex = item.val()['boxIndex'];
         var letter = item.val()['letter'];
         counter = counter + 1;
+        cc += 1;
+        if (cc >= 2) {
+            // cc being >=2 means child_added was triggered at least twice.
+            // since we stop the user from sending data to the server more than once at a time, this implies the other player sent the other piece of data and triggered child_added for the second time
+
+            turn = true;
+        } else {
+            turn = false;
+        }
+        console.log("cc",cc);
+        console.log("counter",counter);
+        //console.log(turn);
     });
 };
 
@@ -57,11 +88,13 @@ var addToken = function(boxIndex, letter) {
 var reset = function() {
     $('.submit').on('click', '.field', function(e) {
         e.stopPropagation();
+        if (turn == false) {return;}
+        cc = 0;
         var that = this;
         if ($(that).html() !== "") {
             return;
         }
-        console.log("reset", counter);
+
         var isOdd = function(counter) {
             return (counter % 2);
         };
@@ -74,6 +107,7 @@ var reset = function() {
             var a = $(that).html(y);
         } else {
             var a = $(that).html(z);
+
         }
 
         var boxIndex = $(that).attr('id');
