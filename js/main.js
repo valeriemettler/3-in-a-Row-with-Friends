@@ -18,7 +18,6 @@ var turn = true;
 //fbplayers.update({ turn: 'true'});
 //fbplayers.update({ turn: 'false'});
 // })
-
 // };
 
 var loadBoard = function() {
@@ -87,13 +86,7 @@ var resetClickCounter = function() {
     clickCounter = 0;
 };
 
-var checkCounter = function(el) {
-    if (counter % 2) { //check if counter is even or odd
-        $(el).html("X");
-    } else {
-        $(el).html("O");
-    }
-};
+
 
 var allowClick = function() {
     $('.submit').on('click', '.field', function(e) {
@@ -110,7 +103,14 @@ var allowClick = function() {
             return;
         }
 
-        checkCounter(that);
+        // var checkCounter = function(that) {
+            if (counter % 2) { //check if counter is even or odd
+                $(that).html("X");
+            } else {
+                $(that).html("O");
+            }
+        // };
+        // checkCounter(that);
 
         var boxIndex = $(that).attr('id');
 
