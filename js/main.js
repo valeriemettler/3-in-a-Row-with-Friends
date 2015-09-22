@@ -87,11 +87,11 @@ var resetClickCounter = function() {
     clickCounter = 0;
 };
 
-var checkCounter = function() {
+var checkCounter = function(el) {
     if (counter % 2) { //check if counter is even or odd
-        $(that).html("X");
+        $(el).html("X");
     } else {
-        $(that).html("O");
+        $(el).html("O");
     }
 };
 
@@ -110,7 +110,7 @@ var allowClick = function() {
             ret
         }
 
-        checkCounter();
+        checkCounter(that);
 
         var boxIndex = $(that).attr('id');
 
