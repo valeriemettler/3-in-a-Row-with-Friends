@@ -107,7 +107,7 @@ var allowClick = function() {
 
         var that = this;
         if ($(that).html() !== "") {
-            ret
+            return;
         }
 
         checkCounter(that);
