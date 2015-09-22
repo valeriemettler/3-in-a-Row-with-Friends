@@ -6,6 +6,8 @@ var boardNum;
 var clickCounter = 1;
 var turn = true;
 
+//how to manage complexity
+
 // var makePlayer = function (){
 // $('#usernameSet').on('click', function() {
 // var nameInput = $('#nameInput').val();
@@ -19,23 +21,23 @@ var turn = true;
 
 // };
 
-var makeBoard = function() {
+var loadBoard = function() {
     boardNum = parseInt(Math.random() * (1000 - 1) + 1);
     $('#boardInput').val(boardNum);
     fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardNum);
     displayBoard();
-    startGame();
-    reset();
+    loadData();
+    allowClick();
 };
 
-var join = function() {
+var joinGame = function() {
     $('#buttonSet').on('click', function() {
         boardInput = $('#joinInput').val();
         fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
         // makePlayer();
         displayBoard();
-        startGame();
-        reset();
+        loadData();
+        allowClick();
     })
 };
 
@@ -53,23 +55,27 @@ var displayBoard = function() {
     $('#x').html(x);
 }
 
-var startGame = function() {
+var updateCounter = function() {
+    counter += 1; //increment counter
+    clickCounter += 1; //increment clickCounter
+    if (clickCounter >= 2) { //check if clickCounter is less or equal to 2
+        // clickCounter being >=2 means child_added was triggered at least twice.
+        // since we stop the user from sending data to the server more than once at a time,
+        //this implies the other player sent the other piece of data and triggered child_added for the second time.
+        turn = true;
+    } else {
+        turn = false;
+    }
+};
+
+var loadData = function() {
     fb.off('child_added');
     fb.on('child_added', function(item) {
         var token = item.val();
         addToken(token.boxIndex, token.letter);
         var boxIndex = item.val()['boxIndex'];
         var letter = item.val()['letter'];
-        counter += 1;   //increment counter
-        clickCounter += 1;       //increment clickCounter
-        if (clickCounter >= 2) {  //check if clickCounter is less or equal to 2
-            // clickCounter being >=2 means child_added was triggered at least twice.
-            // since we stop the user from sending data to the server more than once at a time,
-            //this implies the other player sent the other piece of data and triggered child_added for the second time.
-            turn = true;
-        } else {
-            turn = false;
-        }
+        updateCounter();
     });
 };
 
@@ -77,26 +83,34 @@ var addToken = function(boxIndex, letter) {
     $("#" + boxIndex).html(letter);
 };
 
-var reset = function() {
+var resetClickCounter = function() {
+    clickCounter = 0;
+};
+
+var checkCounter = function() {
+    if (counter % 2) { //check if counter is even or odd
+        $(that).html("X");
+    } else {
+        $(that).html("O");
+    }
+};
+
+var allowClick = function() {
     $('.submit').on('click', '.field', function(e) {
         e.stopPropagation();
 
         if (turn == false) {
             return;
         }
-        clickCounter = 0;  //reset clickCounter to 0
+
+        resetClickCounter();
 
         var that = this;
         if ($(that).html() !== "") {
-            return;
+            ret
         }
 
-        if (counter % 2) {  //check if counter is even or odd
-            $(that).html("X");
-        } else {
-            $(that).html("O");
-
-        }
+        checkCounter();
 
         var boxIndex = $(that).attr('id');
 
@@ -111,11 +125,11 @@ var reset = function() {
 
 var newGame = function() {
     $('#buttonNew').on('click', function() {
-        makeBoard();
+        loadBoard();
     })
 };
 
-var onComplete = function(error) {
+var deleteComplete = function(error) {
     if (error) {
         console.log('Firebase Synchronization failed');
     } else {
@@ -125,7 +139,7 @@ var onComplete = function(error) {
 
 var deleteData = function() {
     $('#deleteData').on('click', function() {
-        fb.remove(onComplete);
+        fb.remove(deleteComplete);
         location.reload();
     })
 };
@@ -133,7 +147,7 @@ var deleteData = function() {
 $(document).ready(function() {
     displayBoard();
     deleteData();
-    join();
-    makeBoard();
+    joinGame();
+    loadBoard();
     newGame();
 });
