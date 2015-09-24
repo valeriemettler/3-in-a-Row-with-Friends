@@ -2,6 +2,8 @@ body {
   background: #fff;
   font-family: font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+/* Navbar Styles */
 .navbar {
   min-height: 55px;
 }
@@ -19,26 +21,13 @@ body {
 .navbar-default .navbar-nav>li>a {
   color: #fff;
 }
-.field {
-  background: #e9eaec;
-  width: 100px;
-  height: 100px;
-  font-size: 72px;
-  text-align: center;
-  margin: 5px;
-}
+
+/* Wrapper Style */
 .wrapper {
   position: relative;
 }
-#x {
 
-  /*   position: relative;*/
-  margin-top: 125px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
+/* Board Number Input and Button Styles */
 input #boardInput {
   margin-right: 20px;
   width: 100px;
@@ -46,7 +35,6 @@ input #boardInput {
 .space {
   margin-left: 9px;
 }
-
 .board {
   margin: 15px -156px;
   position: absolute;
@@ -56,6 +44,29 @@ input #boardInput {
 .join {
   margin: 10px;
 }
+
+/* Board Game Styles */
+#x {
+  margin-top: 125px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+table {
+  margin: -28px 0 0 -170px;
+}
+
+.field {
+  background: #e9eaec;
+  width: 100px;
+  height: 100px;
+  font-size: 72px;
+  text-align: center;
+  margin: 5px;
+}
+
+/* New and Delete Game Button Styles */
 .bottom {
   margin: 441px -163px;
   position: absolute;
@@ -65,34 +76,14 @@ input #boardInput {
 #buttonNew {
   margin-right: 109px;
 }
-
 .btn-danger {
   background-color: #e84d3d;
   border-color: #e84d3d;
 }
-.btn-xs {
-/*    padding: 2px 5px;
-    font-size: 12px;
-    line-height: 1.5;*/
-    /*border-radius: 11px;*/
-}
 
-.btn {
-/*  border-radius: 20px;*/
-}
-table {
-
-  /*  position: absolute;
-  top: 50%;
-  left: 50%;*/
-  margin: -28px 0 0 -170px;
-}
-
-@media screen and (min-width: 420px) {
-
-.navbar-brand>img {
-  margin: -9px 0 0 -5px;
- height: 224%;
-}
-
+@media screen and (min-width:420px) {
+  .navbar-brand>img {
+    margin: -9px 0 0 -5px;
+    height: 224%;
+  }
 }
