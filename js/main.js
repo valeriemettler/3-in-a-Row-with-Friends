@@ -33,6 +33,7 @@ var joinGame = function() {
     $('#buttonSet').on('click', function() {
         boardInput = $('#joinInput').val();
         fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
+        $('#boardInput').val(boardInput);
         // makePlayer();
         displayBoard();
         loadData();
@@ -126,6 +127,7 @@ var allowClick = function() {
 var newGame = function() {
     $('#buttonNew').on('click', function() {
         loadBoard();
+        $('#joinInput').val('');
     })
 };
 
