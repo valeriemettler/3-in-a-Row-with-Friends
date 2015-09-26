@@ -2,7 +2,9 @@ body {
   background: #fff;
   font-family: font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
+h4 {
+  font-size: 25px;
+}
 /* Navbar Styles */
 .navbar {
   min-height: 55px;
@@ -20,6 +22,11 @@ body {
 }
 .navbar-default .navbar-nav>li>a {
   color: #fff;
+}
+#modal{
+  margin: 15px 0px 0 10px;
+  background-color: #26b0d7;
+  border-color: #26b0d7;
 }
 
 /* Wrapper Style */
@@ -85,5 +92,8 @@ table {
   .navbar-brand>img {
     margin: -9px 0 0 -5px;
     height: 224%;
+  }
+  #modal{
+  margin: 15px 20px 0 0;
   }
 }

@@ -26,6 +26,9 @@
                     <ul class="nav navbar-nav">
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><button type="button" id="modal" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                            Instructions
+                        </button></li>
                         <li><a href="#"><span></span>Sign Up</a></li>
                         <li><a href="#"><span></span>Login</a></li>
                     </ul>
@@ -33,33 +36,44 @@
             </div>
         </nav>
         <!-- Navbar Ends -->
-
         <div class="wrapper"><!-- Wrapper -->
-
-            <!-- <input type='text'id='nameInput'placeholder='Username'value="">
-            <button id="usernameSet"type="button">Enter User Name</button> -->
-
-            <!-- Board Number Input and Button -->
-            <div class="board">
-                <div class="join">
-                    <input type='text'id='joinInput'placeholder='Board Number'value="">
-                    <span class="space"><button id="buttonSet"type="button" class="btn btn-danger btn-xs">Join Game</button><span>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Game Instructions</h4>
                     </div>
-                    <div id='boardNum'>Current Board Number:&nbsp<input type='text'id='boardInput'placeholder='Board Number'value=""></div>
+                    <div class="modal-body">
+                        Invite a friend to join your current board number or join your friend's current board number. You'll need to wait until your friend plays before you can take another turn. Enjoy!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <!-- Board Number Input and Button Ends -->
-
-                <!-- Board -->
-                <div id="x"></div>
-                <!-- Board Ends-->
-
-                <!-- New and Delete Game Button -->
-                <div class="bottom">
-                    <button id="buttonNew"type="button" class="btn btn-danger">New Game</button>
-                    <button id="deleteData" type="button" class="btn btn-danger">Delete Game</button>
+            </div>
+        </div>
+        <!-- <input type='text'id='nameInput'placeholder='Username'value="">
+        <button id="usernameSet"type="button">Enter User Name</button> -->
+        <!-- Board Number Input and Button -->
+        <div class="board">
+            <div class="join">
+                <input type='text'id='joinInput'placeholder='Board Number'value="">
+                <span class="space"><button id="buttonSet"type="button" class="btn btn-danger btn-xs">Join Game</button><span>
                 </div>
-                 <!-- New and Delete Game Button Ends -->
-
+                <div id='boardNum'>Current Board Number:&nbsp<input type='text'id='boardInput'placeholder='Board Number'value=""></div>
+            </div>
+            <!-- Board Number Input and Button Ends -->
+            <!-- Board -->
+            <div id="x"></div>
+            <!-- Board Ends-->
+            <!-- New and Delete Game Button -->
+            <div class="bottom">
+                <button id="buttonNew"type="button" class="btn btn-danger">New Game</button>
+                <button id="deleteData" type="button" class="btn btn-danger">Delete Game</button>
+            </div>
+            <!-- New and Delete Game Button Ends -->
             </div><!-- Wrapper Ends -->
             <script src="js/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
