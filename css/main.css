@@ -5,6 +5,7 @@ body {
 h4 {
   font-size: 25px;
 }
+
 /* Navbar Styles */
 .navbar {
   min-height: 55px;
@@ -23,8 +24,8 @@ h4 {
 .navbar-default .navbar-nav>li>a {
   color: #fff;
 }
-#modal{
-  margin: 15px 0px 0 10px;
+#modal {
+  margin: 5px 0px 9px 10px;
   background-color: #26b0d7;
   border-color: #26b0d7;
 }
@@ -59,11 +60,9 @@ input #boardInput {
   top: 50%;
   left: 50%;
 }
-
 table {
   margin: -28px 0 0 -170px;
 }
-
 .field {
   background: #e9eaec;
   width: 100px;
@@ -87,13 +86,12 @@ table {
   background-color: #e84d3d;
   border-color: #e84d3d;
 }
-
 @media screen and (min-width:420px) {
   .navbar-brand>img {
     margin: -9px 0 0 -5px;
     height: 224%;
   }
-  #modal{
-  margin: 15px 20px 0 0;
+  #modal {
+    margin: 15px 20px 0 0;
   }
 }
