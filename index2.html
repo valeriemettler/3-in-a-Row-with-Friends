@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en-us">
     <head>
-        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible"content="IE=edge">
         <meta name="viewport"content="width=device-width, initial-scale=1">
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
         <title>3 in a Row with Friends | Built with JavaScript, jQuery, and Firebase</title>
         <link rel="stylesheet"href="css/bootstrap.min.css">
-        <link rel="stylesheet"href="css/main.css">
+        <link rel="stylesheet"href="css/main2.css">
     </head>
     <body>
         <!-- Navbar -->
@@ -36,7 +37,7 @@
             </div>
         </nav>
         <!-- Navbar Ends -->
-        <div class="wrapper"><!-- Wrapper -->
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -54,19 +55,27 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Ends -->
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-6 center-block">
+        <div class="wrapper">  <!-- Wrapper -->
         <!-- <input type='text'id='nameInput'placeholder='Username'value="">
         <button id="usernameSet"type="button">Enter User Name</button> -->
         <!-- Board Number Input and Button -->
         <div class="board">
             <div class="join">
                 <input type='text'id='joinInput'placeholder='Board Number'value="">
-                <span class="space"><button id="buttonSet"type="button" class="btn btn-danger btn-sm">Join Game</button><span>
+                <span class="space"><button id="buttonSet"type="button" class="btn btn-danger btn-xs">Join Game</button><span>
                 </div>
                 <div id='boardNum'>Current Board Number:&nbsp<input type='text'id='boardInput'placeholder='Board Number'value=""></div>
             </div>
             <!-- Board Number Input and Button Ends -->
             <!-- Board -->
-            <div id="x"></div>
+            <div class="center-block" id="x"></div>
             <!-- Board Ends-->
             <!-- New and Delete Game Button -->
             <div class="bottom">
@@ -74,7 +83,21 @@
                 <button id="deleteData" type="button" class="btn btn-danger">Delete Game</button>
             </div>
             <!-- New and Delete Game Button Ends -->
-            </div><!-- Wrapper Ends -->
+         </div> <!-- Wrapper Ends -->
+        </div> <!-- column Ends -->
+
+              <div class="col-sm-6" id="chat">
+               <div class="wrapper"> <!-- Wrapper -->
+                    <h4>Live Chat</h4>
+                    <hr>
+                    <div id='messagesDiv'></div>
+                        <input type='text' id='nameInput' placeholder='Name'>
+                        <input type='text' id='messageInput' placeholder='Message'>
+                       </div><!-- Wrapper Ends -->
+                    </div> <!-- column Ends -->
+            </div> <!-- row Ends -->
+            </div><!-- container Ends -->
+
             <script src="js/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="js/main.js"></script>

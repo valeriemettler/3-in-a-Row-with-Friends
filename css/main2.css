@@ -5,7 +5,12 @@ body {
 h4 {
   font-size: 25px;
 }
-
+.col-sm-6 {
+  padding-left: 25px;
+}
+#chat {
+  padding-left: 32px;
+}
 /* Navbar Styles */
 .navbar {
   min-height: 55px;
@@ -18,7 +23,7 @@ h4 {
   color: #fff;
 }
 .navbar-brand>img {
-  margin: -9px 0 0 -8px;
+ /* margin: -9px 0 0 -8px;*/
   height: 148%;
 }
 .navbar-default .navbar-nav>li>a {
@@ -32,47 +37,47 @@ h4 {
 
 /* Wrapper Style */
 .wrapper {
-  position: relative;
+  /*position: relative;*/
+ /* width: 300px;*/
 }
 
 /* Board Number Input and Button Styles */
-#boardInput {
+input #boardInput {
   margin-right: 20px;
-  width: 167px;
+  width: 100px;
+}
+#buttonSet {
+  margin-top: -2px;
+}
+#joinInput{
+  margin-left: 17px;
+}
+#boardNum {
+  margin-left: -7px;
 }
 .space {
   margin-left: 9px;
 }
 .board {
-  margin: 15px -156px;
+/*  margin: 15px -156px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 50%;*/
+    margin: 0px 0px 19px 12px;
 }
 .join {
-  margin: 10px;
-}
-#joinInput {
-  margin-left: -20px;
-  width: 230px;
-}
-#boardNum {
-  margin-left: -9px;
-}
-#buttonSet {
-  padding: 3px 8px;
-  margin-top: -3px;
+  margin: 10px 6px 11px -24px
 }
 
 /* Board Game Styles */
 #x {
-  margin-top: 125px;
+/*  margin-top: 125px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 50%;*/
 }
 table {
-  margin: -28px 0 0 -170px;
+/*  margin: -28px 0 0 -170px;*/
 }
 .field {
   background: #e9eaec;
@@ -85,16 +90,18 @@ table {
 
 /* New and Delete Game Button Styles */
 .bottom {
-  margin: 441px -163px;
+/*  margin: 441px -163px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 50%;*/
+  margin-top: 3px;
 }
 #buttonNew {
-  margin-right: 120px;
+/*  margin-right: 109px;*/
+margin-left: 5px;
 }
 #deleteData {
-  padding: 6.5px 7px;
+  margin-left:  113px;
 }
 .btn-danger {
   background-color: #e84d3d;
