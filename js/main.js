@@ -6,20 +6,6 @@ var boardNum;
 var clickCounter = 1;
 var turn = true;
 
-//how to manage complexity
-
-// var makePlayer = function (){
-// $('#usernameSet').on('click', function() {
-// var nameInput = $('#nameInput').val();
-// console.log(nameInput);
-// fbplayers = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput + '/' + nameInput);
-// fbplayers.child('turn').set('null');
-//fbplayers.update({ turn: 'null'});
-//fbplayers.update({ turn: 'true'});
-//fbplayers.update({ turn: 'false'});
-// })
-// };
-
 var loadBoard = function() {
     boardNum = parseInt(Math.random() * (1000 - 1) + 1);
     $('#boardInput').val(boardNum);
@@ -34,7 +20,6 @@ var joinGame = function() {
         boardInput = $('#joinInput').val();
         fb = new Firebase('https://valtictactoegame.firebaseio.com/' + boardInput);
         $('#boardInput').val(boardInput);
-        // makePlayer();
         displayBoard();
         loadData();
         allowClick();
@@ -56,9 +41,9 @@ var displayBoard = function() {
 }
 
 var updateCounter = function() {
-    counter += 1; //increment counter
-    clickCounter += 1; //increment clickCounter
-    if (clickCounter >= 2) { //check if clickCounter is less or equal to 2
+    counter += 1;
+    clickCounter += 1;
+    if (clickCounter >= 2) {
         // clickCounter being >=2 means child_added was triggered at least twice.
         // since we stop the user from sending data to the server more than once at a time,
         //this implies the other player sent the other piece of data and triggered child_added for the second time.
@@ -87,8 +72,6 @@ var resetClickCounter = function() {
     clickCounter = 0;
 };
 
-
-
 var allowClick = function() {
     $('.submit').on('click', '.field', function(e) {
         e.stopPropagation();
@@ -104,17 +87,13 @@ var allowClick = function() {
             return;
         }
 
-        // var checkCounter = function(that) {
-            if (counter % 2) { //check if counter is even or odd
+            if (counter % 2) {
                 $(that).html("X");
             } else {
                 $(that).html("O");
             }
-        // };
-        // checkCounter(that);
 
         var boxIndex = $(that).attr('id');
-
         var letter = $(that).html();
 
         fb.push({
@@ -146,18 +125,12 @@ var deleteData = function() {
     })
 };
 
-
-
-
-
 $(document).ready(function() {
     displayBoard();
     deleteData();
     joinGame();
     loadBoard();
     newGame();
-
-/////////
 
  var myDataRef = new Firebase('https://test2player.firebaseio.com/');
       $('#messageInput').keypress(function (e) {
